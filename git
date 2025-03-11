@@ -1,0 +1,4 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+      640     595     640      12876  cons0     197609 00:31:57 /usr/bin/PS
+      635       1     635      22372  ?         197609 00:31:57 /mingw64/libexec/git-core/git
+      595       1     595       5420  cons0     197609 00:31:55 /usr/bin/bash
