@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@tailwindcss/oxide": "^4.0.12",
-    "next": "15.2.1"
+    "next": "15.2.1",
+    "next-themes": "^0.4.5",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

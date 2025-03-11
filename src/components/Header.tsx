@@ -1,71 +1,125 @@
-import Link from "next/link";
-import DarkModeToggle from "./DarkModeToggle";
-import SearchBar from "./SearchBar";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    // Get initial theme from localStorage
+    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
   return (
-    <header className="bg-white dark:bg-gray-800 shadow">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <Link href="/">
-                <span className="flex items-center cursor-pointer">
-                  <span className="text-2xl text-green-600 dark:text-green-500">🗑️</span>
-                  <span className="ml-2 text-xl font-bold text-gray-700 dark:text-white">
-                    EcoWaste
-                  </span>
-                </span>
+    <header className="bg-[#1A2B3C] text-white h-24">
+      <div className="container mx-auto px-4 h-full flex items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/calgary-logo.svg"
+            alt="City of Calgary Logo"
+            width={200}
+            height={80}
+            className="h-16 w-auto"
+            priority
+          />
+          <span className="ml-4 text-2xl font-semibold hidden md:inline">
+            Waste & Recycling Services
+          </span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link href="/" className="hover:text-red-500 transition-colors">
+            Home
+          </Link>
+          <Link href="/resources" className="hover:text-red-500 transition-colors">
+            Resources
+          </Link>
+          <Link href="/faq" className="hover:text-red-500 transition-colors">
+            FAQ
+          </Link>
+          <Link href="/contact" className="hover:text-red-500 transition-colors">
+            Contact
+          </Link>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+          </button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={toggleTheme}
+            className="p-2 mr-2 rounded-full hover:bg-gray-700 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden absolute top-24 left-0 right-0 bg-[#1A2B3C] border-t border-gray-700">
+            <nav className="flex flex-col p-4">
+              <Link
+                href="/"
+                className="py-2 hover:text-red-500 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
               </Link>
-            </div>
-            <nav className="hidden md:ml-8 md:flex md:space-x-8">
-              <Link href="/">
-                <span className="inline-flex items-center px-1 pt-1 border-b-2 border-green-500 text-sm font-medium text-gray-600 dark:text-white">
-                  Home
-                </span>
+              <Link
+                href="/resources"
+                className="py-2 hover:text-red-500 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Resources
               </Link>
-              <Link href="/locations">
-                <span className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:border-gray-300 cursor-pointer">
-                  Locations
-                </span>
+              <Link
+                href="/faq"
+                className="py-2 hover:text-red-500 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                FAQ
               </Link>
-              <Link href="/resources">
-                <span className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:border-gray-300">
-                  Resources
-                </span>
-              </Link>
-              <Link href="/contact">
-                <span className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:border-gray-300">
-                  Contact
-                </span>
+              <Link
+                href="/contact"
+                className="py-2 hover:text-red-500 transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
               </Link>
             </nav>
           </div>
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            <SearchBar />
-            <DarkModeToggle />
-          </div>
-          <div className="md:hidden">
-            <button
-              type="button"
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </header>
   );
