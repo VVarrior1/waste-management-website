@@ -8,9 +8,10 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       <Header />
-      <main className="flex-grow bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+      <main className="flex-grow relative">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02] pointer-events-none" />
         {children}
       </main>
       <Footer />

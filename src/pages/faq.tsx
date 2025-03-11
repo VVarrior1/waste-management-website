@@ -16,7 +16,7 @@ const FAQ = () => {
     general: [
       {
         question: 'What are your operating hours?',
-        answer: 'The City of Calgary Waste & Recycling Services operates Monday through Friday, 8:00 AM to 4:30 PM. Collection services run from 7:00 AM to 7:30 PM according to your area\'s schedule.'
+        answer: 'The City of Calgary Waste & Recycling Services operates Monday through Friday, 8:00 AM to 4:30 PM. Collection services run from 7:00 AM to 7:30 PM according to your area&apos;s schedule.'
       },
       {
         question: 'How do I report a missed collection?',
@@ -24,7 +24,7 @@ const FAQ = () => {
       },
       {
         question: 'How do I request a new cart?',
-        answer: 'New or replacement carts can be requested by calling 311 or through the City of Calgary\'s online service portal. For damaged carts, repairs are typically completed within 10 business days.'
+        answer: 'New or replacement carts can be requested by calling 311 or through the City of Calgary&apos;s online service portal. For damaged carts, repairs are typically completed within 10 business days.'
       }
     ],
     recycling: [
@@ -52,17 +52,17 @@ const FAQ = () => {
       },
       {
         question: 'How should I position my carts?',
-        answer: 'Place carts on flat ground with wheels against the curb. Leave at least 1 metre (3 feet) of space between carts and ensure they\'re clear of vehicles, poles, and other obstacles.'
+        answer: 'Place carts on flat ground with wheels against the curb. Leave at least 1 metre (3 feet) of space between carts and ensure they&apos;re clear of vehicles, poles, and other obstacles.'
       }
     ],
     hazardous: [
       {
         question: 'What is considered household hazardous waste?',
-        answer: 'Household hazardous waste includes batteries, paint, motor oil, chemicals, electronics, light bulbs, and aerosol cans. These items require special handling and must be taken to a City of Calgary Throw \'n\' Go facility.'
+        answer: 'Household hazardous waste includes batteries, paint, motor oil, chemicals, electronics, light bulbs, and aerosol cans. These items require special handling and must be taken to a City of Calgary Throw &apos;n&apos; Go facility.'
       },
       {
         question: 'Where can I dispose of hazardous waste?',
-        answer: 'Hazardous waste must be taken to one of Calgary\'s three Throw \'n\' Go facilities. Visit calgary.ca/waste for locations, hours, and a complete list of accepted materials.'
+        answer: 'Hazardous waste must be taken to one of Calgary&apos;s three Throw &apos;n&apos; Go facilities. Visit calgary.ca/waste for locations, hours, and a complete list of accepted materials.'
       },
       {
         question: 'How should I store hazardous materials?',
@@ -125,7 +125,7 @@ const FAQ = () => {
         {/* Contact Section */}
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Can't find what you're looking for?
+            Can&apos;t find what you&apos;re looking for?
           </p>
           <Link
             href="/contact"

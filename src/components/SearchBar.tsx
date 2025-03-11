@@ -117,7 +117,7 @@ const SearchBar = () => {
               </div>
             ) : (
               <p className="text-gray-600 dark:text-gray-300">
-                No results found for "{searchQuery}"
+                No results found for &quot;{searchQuery}&quot;
               </p>
             )}
           </div>

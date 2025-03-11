@@ -2,34 +2,24 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { Theme, getInitialTheme, toggleTheme } from '../utils/theme';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    // Get initial theme from localStorage
-    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
+    const initialTheme = getInitialTheme();
+    setTheme(initialTheme);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+  const handleThemeToggle = () => {
+    setTheme(currentTheme => toggleTheme(currentTheme));
   };
 
   return (
-    <header className="bg-[#1A2B3C] text-white h-24">
-      <div className="container mx-auto px-4 h-full flex items-center justify-between">
+    <header className="bg-[#1A2B3C] text-white shadow-lg">
+      <div className="container mx-auto px-4 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
             src="/calgary-logo.svg"
@@ -59,8 +49,8 @@ const Header = () => {
             Contact
           </Link>
           <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+            onClick={handleThemeToggle}
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
             aria-label="Toggle theme"
           >
             {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
@@ -70,15 +60,15 @@ const Header = () => {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button
-            onClick={toggleTheme}
-            className="p-2 mr-2 rounded-full hover:bg-gray-700 transition-colors"
+            onClick={handleThemeToggle}
+            className="p-2 mr-2 rounded-full hover:bg-white/10 transition-colors"
             aria-label="Toggle theme"
           >
             {theme === 'light' ? <FiMoon size={20} /> : <FiSun size={20} />}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -87,7 +77,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute top-24 left-0 right-0 bg-[#1A2B3C] border-t border-gray-700">
+          <div className="md:hidden absolute top-24 left-0 right-0 bg-[#1A2B3C] border-t border-gray-700 shadow-lg">
             <nav className="flex flex-col p-4">
               <Link
                 href="/"

@@ -12,7 +12,7 @@ const About = () => {
   const values = [
     {
       title: 'Environmental Leadership',
-      description: 'Committed to protecting Calgary\'s environment through sustainable waste management practices.',
+      description: 'Committed to protecting Calgary&apos;s environment through sustainable waste management practices.',
       icon: '🌍'
     },
     {
@@ -74,7 +74,7 @@ const About = () => {
             City of Calgary Waste & Recycling Services
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Serving Calgarians since 1908. We're committed to creating a cleaner, more sustainable future for our city through efficient waste management and environmental stewardship.
+            Serving Calgarians since 1908. We&apos;re committed to creating a cleaner, more sustainable future for our city through efficient waste management and environmental stewardship.
           </p>
         </div>
 
@@ -154,10 +154,10 @@ const About = () => {
         {/* CTA Section */}
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-            Get Involved in Calgary's Waste Reduction
+            Get Involved in Calgary&apos;s Waste Reduction
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Together, we can make Calgary a leader in sustainable waste management. Learn how you can contribute to our city's environmental goals.
+            Together, we can make Calgary a leader in sustainable waste management. Learn how you can contribute to our city&apos;s environmental goals.
           </p>
           <Link
             href="/contact"

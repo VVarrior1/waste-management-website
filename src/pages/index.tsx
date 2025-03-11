@@ -3,29 +3,53 @@ import NextBinDay from '../components/NextBinDay';
 import WasteSearch from '../components/WasteSearch';
 import QuickLinks from '../components/QuickLinks';
 import BinTypes from '../components/BinTypes';
-import CollectionSchedule from '../components/CollectionSchedule';
+import ReminderForm from '../components/ReminderForm';
+import WasteItemsGallery from '../components/WasteItemsGallery';
 
 export default function Home() {
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-8">
-          City of Calgary Waste & Recycling Services
-        </h1>
-        <div className="mb-8">
-          <WasteSearch />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <BinTypes />
-            <div className="lg:hidden">
-              <NextBinDay />
-            </div>
-            <CollectionSchedule />
-            <QuickLinks />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-900 transition-colors duration-200 dark:from-gray-900 dark:to-gray-800 dark:text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Hero Section */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+              City of Calgary Waste & Recycling
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Find the right bin for your waste and learn how to dispose of items responsibly.
+            </p>
           </div>
-          <div className="hidden lg:block lg:col-span-1">
-            <NextBinDay />
+
+          {/* Search Section */}
+          <div className="mb-12 max-w-2xl mx-auto">
+            <WasteSearch />
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Main Content Area */}
+            <div className="lg:col-span-8 space-y-8">
+              <BinTypes />
+              <div className="lg:hidden space-y-6">
+                <NextBinDay />
+                <ReminderForm />
+              </div>
+              <WasteItemsGallery />
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="hidden lg:block sticky top-8 space-y-6">
+                <NextBinDay />
+                <ReminderForm />
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links Section */}
+          <div className="mt-12">
+            <QuickLinks />
           </div>
         </div>
       </div>
