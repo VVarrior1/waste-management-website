@@ -7,9 +7,9 @@ import { useTheme } from "@/context/ThemeContext";
 
 const Home: NextPage = () => {
   const { darkMode } = useTheme();
-  const [activeTab, setActiveTab] = useState<"green" | "blue" | "black" | "hazardous">(
-    "green"
-  );
+  const [activeTab, setActiveTab] = useState<
+    "green" | "blue" | "black" | "hazardous"
+  >("green");
   const [scheduleView, setScheduleView] = useState<"original" | "a-z">(
     "original"
   );
@@ -20,46 +20,49 @@ const Home: NextPage = () => {
   // Mock search function
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Mock database of waste items
     const wasteItems = [
-      { 
-        name: "Motor oil", 
-        category: "hazardous", 
-        disposal: "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
-        link: "/locations"
+      {
+        name: "Motor oil",
+        category: "hazardous",
+        disposal:
+          "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
+        link: "/locations",
       },
-      { 
-        name: "Paint", 
-        category: "hazardous", 
-        disposal: "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
-        link: "/locations"
+      {
+        name: "Paint",
+        category: "hazardous",
+        disposal:
+          "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
+        link: "/locations",
       },
-      { 
-        name: "Batteries", 
-        category: "hazardous", 
-        disposal: "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
-        link: "/locations"
+      {
+        name: "Batteries",
+        category: "hazardous",
+        disposal:
+          "Cannot go in regular bins. Must be taken to a hazardous waste drop-off location.",
+        link: "/locations",
       },
-      { 
-        name: "Paper", 
-        category: "recyclable", 
+      {
+        name: "Paper",
+        category: "recyclable",
         disposal: "Place in green recycling bin.",
-        link: ""
+        link: "",
       },
-      { 
-        name: "Food waste", 
-        category: "compostable", 
+      {
+        name: "Food waste",
+        category: "compostable",
         disposal: "Place in blue compost bin.",
-        link: ""
-      }
+        link: "",
+      },
     ];
-    
+
     // Filter items based on search query
-    const results = wasteItems.filter(item => 
+    const results = wasteItems.filter((item) =>
       item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    
+
     setSearchResults(results);
     setShowSearchResults(true);
   };
@@ -125,8 +128,8 @@ const Home: NextPage = () => {
             <li>Household chemicals</li>
           </ul>
           <div className="mt-4 flex space-x-3">
-            <a 
-              href="/locations" 
+            <a
+              href="/locations"
               className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
             >
               Find Drop-off Locations
@@ -171,25 +174,43 @@ const Home: NextPage = () => {
               <div className="p-3 font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white border-r">
                 Wed
               </div>
-              <div className="p-3 font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white">Fri</div>
+              <div className="p-3 font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white">
+                Fri
+              </div>
             </div>
             <div className="grid grid-cols-4 border-b">
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">Recyclables</div>
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">✓</div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                Recyclables
+              </div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                ✓
+              </div>
               <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"></div>
-              <div className="p-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">✓</div>
+              <div className="p-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                ✓
+              </div>
             </div>
             <div className="grid grid-cols-4 border-b">
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">Compost</div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                Compost
+              </div>
               <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"></div>
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">✓</div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                ✓
+              </div>
               <div className="p-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"></div>
             </div>
             <div className="grid grid-cols-4">
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">General Waste</div>
-              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">✓</div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                General Waste
+              </div>
+              <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                ✓
+              </div>
               <div className="p-3 border-r bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"></div>
-              <div className="p-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">✓</div>
+              <div className="p-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+                ✓
+              </div>
             </div>
           </div>
         </div>
@@ -200,7 +221,9 @@ const Home: NextPage = () => {
           <div className="bg-white dark:bg-gray-800 p-4 rounded-md border border-gray-200 dark:border-gray-700">
             <div className="flex items-center">
               <span className="text-blue-500 dark:text-blue-400 mr-2">📅</span>
-              <span className="font-medium text-gray-800 dark:text-gray-200">Monday</span>
+              <span className="font-medium text-gray-800 dark:text-gray-200">
+                Monday
+              </span>
             </div>
             <div className="mt-2 pl-7 text-gray-700 dark:text-gray-300">
               <p>• Recyclables Collection</p>
@@ -210,7 +233,9 @@ const Home: NextPage = () => {
           <div className="bg-white dark:bg-gray-800 p-4 rounded-md border border-gray-200 dark:border-gray-700">
             <div className="flex items-center">
               <span className="text-blue-500 dark:text-blue-400 mr-2">📅</span>
-              <span className="font-medium text-gray-800 dark:text-gray-200">Wednesday</span>
+              <span className="font-medium text-gray-800 dark:text-gray-200">
+                Wednesday
+              </span>
             </div>
             <div className="mt-2 pl-7 text-gray-700 dark:text-gray-300">
               <p>• Compost Collection</p>
@@ -219,7 +244,9 @@ const Home: NextPage = () => {
           <div className="bg-white dark:bg-gray-800 p-4 rounded-md border border-gray-200 dark:border-gray-700">
             <div className="flex items-center">
               <span className="text-blue-500 dark:text-blue-400 mr-2">📅</span>
-              <span className="font-medium text-gray-800 dark:text-gray-200">Friday</span>
+              <span className="font-medium text-gray-800 dark:text-gray-200">
+                Friday
+              </span>
             </div>
             <div className="mt-2 pl-7 text-gray-700 dark:text-gray-300">
               <p>• Recyclables Collection</p>
@@ -232,7 +259,9 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div
+      className={`min-h-screen ${darkMode ? "dark bg-gray-900" : "bg-gray-50"}`}
+    >
       <Head>
         <title>Waste Management Services</title>
         <meta
@@ -247,7 +276,9 @@ const Home: NextPage = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <span className="text-2xl text-green-600 dark:text-green-500">🗑️</span>
+                <span className="text-2xl text-green-600 dark:text-green-500">
+                  🗑️
+                </span>
                 <span className="ml-2 text-xl font-bold text-gray-700 dark:text-white">
                   EcoWaste
                 </span>
@@ -357,7 +388,7 @@ const Home: NextPage = () => {
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-white">
                   Search Results
                 </h2>
-                <button 
+                <button
                   onClick={() => setShowSearchResults(false)}
                   className="text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                 >
@@ -367,16 +398,27 @@ const Home: NextPage = () => {
               {searchResults.length > 0 ? (
                 <div className="space-y-4">
                   {searchResults.map((item, index) => (
-                    <div key={index} className={`p-4 rounded-md ${
-                      item.category === 'hazardous' ? 'bg-red-50 dark:bg-red-900/20' : 
-                      item.category === 'recyclable' ? 'bg-green-50 dark:bg-green-900/20' : 
-                      item.category === 'compostable' ? 'bg-blue-50 dark:bg-blue-900/20' : 'bg-gray-50 dark:bg-gray-700'
-                    }`}>
-                      <h3 className="font-medium text-gray-700 dark:text-white">{item.name}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 mt-1">{item.disposal}</p>
+                    <div
+                      key={index}
+                      className={`p-4 rounded-md ${
+                        item.category === "hazardous"
+                          ? "bg-red-50 dark:bg-red-900/20"
+                          : item.category === "recyclable"
+                          ? "bg-green-50 dark:bg-green-900/20"
+                          : item.category === "compostable"
+                          ? "bg-blue-50 dark:bg-blue-900/20"
+                          : "bg-gray-50 dark:bg-gray-700"
+                      }`}
+                    >
+                      <h3 className="font-medium text-gray-700 dark:text-white">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 mt-1">
+                        {item.disposal}
+                      </p>
                       {item.link && (
-                        <a 
-                          href={item.link} 
+                        <a
+                          href={item.link}
                           className="inline-block mt-2 text-sm text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300"
                         >
                           Find drop-off locations →
@@ -386,7 +428,9 @@ const Home: NextPage = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-600 dark:text-gray-300">No results found for "{searchQuery}"</p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  No results found for "{searchQuery}"
+                </p>
               )}
             </div>
           </div>
@@ -398,10 +442,16 @@ const Home: NextPage = () => {
               Next Bin Day
             </h2>
             <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center border border-gray-200 dark:border-gray-700">
-              <span className="text-2xl text-green-600 dark:text-green-500 mr-3">📅</span>
+              <span className="text-2xl text-green-600 dark:text-green-500 mr-3">
+                📅
+              </span>
               <div>
-                <p className="font-medium text-gray-700 dark:text-white">Wednesday, March 12</p>
-                <p className="text-gray-600 dark:text-gray-300">Compost Collection</p>
+                <p className="font-medium text-gray-700 dark:text-white">
+                  Wednesday, March 12
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Compost Collection
+                </p>
               </div>
             </div>
           </div>
@@ -499,7 +549,9 @@ const Home: NextPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <div className="border rounded-md p-4 flex flex-col items-center text-center hover:bg-gray-50">
                 <span className="text-3xl text-green-600 mb-3">📅</span>
-                <h3 className="font-medium mb-1 text-gray-700 dark:text-white">Schedule</h3>
+                <h3 className="font-medium mb-1 text-gray-700 dark:text-white">
+                  Schedule
+                </h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   View upcoming collection dates
                 </p>
@@ -513,8 +565,8 @@ const Home: NextPage = () => {
                   Commercial waste solutions
                 </p>
               </div>
-              <a 
-                href="/locations" 
+              <a
+                href="/locations"
                 className="border rounded-md p-4 flex flex-col items-center text-center hover:bg-gray-50"
               >
                 <span className="text-3xl text-yellow-600 mb-3">🗺️</span>
@@ -573,10 +625,14 @@ const Home: NextPage = () => {
             </div>
             <div className="sm:col-span-2 md:col-span-1">
               <h3 className="text-lg font-medium mb-4">Contact Us</h3>
-              <p className="text-gray-300 mb-2">123 Recycling Way</p>
-              <p className="text-gray-300 mb-2">Green City, EC 12345</p>
-              <p className="text-gray-300 mb-2">info@ecowaste.example</p>
-              <p className="text-gray-300">(555) 123-4567</p>
+              <p className="text-gray-300 mb-2">
+                City Hall and Municipal Complex
+              </p>
+              <p className="text-gray-300 mb-2">
+                800 Macleod Trail S.E., T2P 2M5
+              </p>
+              <p className="text-gray-300 mb-2">info@calgary.ca</p>
+              <p className="text-gray-300">403-268-CITY (2489)</p>
             </div>
           </div>
         </div>
