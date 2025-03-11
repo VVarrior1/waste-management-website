@@ -15,8 +15,8 @@ const Locations: NextPage = () => {
   const locations = [
     {
       id: 1,
-      name: "City Hazardous Waste Facility",
-      address: "123 Environmental Way, Green City, EC 12345",
+      name: "Shepard Landfill and Eco Centre - The City of Calgary",
+      address: "12111 68 St SE, Calgary, AB T2Z 0E5",
       distance: "2.3 miles",
       hours: {
         monday: "8:00 AM - 5:00 PM",
@@ -25,7 +25,7 @@ const Locations: NextPage = () => {
         thursday: "8:00 AM - 5:00 PM",
         friday: "8:00 AM - 5:00 PM",
         saturday: "9:00 AM - 3:00 PM",
-        sunday: "Closed"
+        sunday: "Closed",
       },
       acceptedItems: [
         "Motor oil and filters",
@@ -33,14 +33,14 @@ const Locations: NextPage = () => {
         "Batteries",
         "Electronics",
         "Fluorescent bulbs",
-        "Household chemicals"
+        "Household chemicals",
       ],
-      phone: "(555) 123-4567"
+      phone: "(403) 770-9902",
     },
     {
       id: 2,
-      name: "County Recycling Center",
-      address: "456 Recycle Blvd, Green City, EC 12345",
+      name: "East Calgary Landfill and Eco Centre - The City of Calgary",
+      address: "3020 68 St SE, Calgary, AB T2B 4R8",
       distance: "4.7 miles",
       hours: {
         monday: "7:00 AM - 7:00 PM",
@@ -49,20 +49,20 @@ const Locations: NextPage = () => {
         thursday: "7:00 AM - 7:00 PM",
         friday: "7:00 AM - 7:00 PM",
         saturday: "8:00 AM - 5:00 PM",
-        sunday: "10:00 AM - 3:00 PM"
+        sunday: "10:00 AM - 3:00 PM",
       },
       acceptedItems: [
         "Motor oil and filters",
         "Batteries",
         "Electronics",
-        "Fluorescent bulbs"
+        "Fluorescent bulbs",
       ],
-      phone: "(555) 987-6543"
+      phone: "(403) 987-6543",
     },
     {
       id: 3,
-      name: "EcoWaste Drop-off Center",
-      address: "789 Green Street, Green City, EC 12345",
+      name: "Spyhill Landfill and Eco Centre - The City of Calgary",
+      address: "11808 69 St NW, Calgary, AB T3R 1J4",
       distance: "6.1 miles",
       hours: {
         monday: "9:00 AM - 6:00 PM",
@@ -71,7 +71,7 @@ const Locations: NextPage = () => {
         thursday: "9:00 AM - 6:00 PM",
         friday: "9:00 AM - 6:00 PM",
         saturday: "10:00 AM - 4:00 PM",
-        sunday: "Closed"
+        sunday: "Closed",
       },
       acceptedItems: [
         "Motor oil and filters",
@@ -81,10 +81,10 @@ const Locations: NextPage = () => {
         "Fluorescent bulbs",
         "Household chemicals",
         "Tires",
-        "Appliances"
+        "Appliances",
       ],
-      phone: "(555) 456-7890"
-    }
+      phone: "(587) 456-7890",
+    },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -93,7 +93,9 @@ const Locations: NextPage = () => {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div
+      className={`min-h-screen ${darkMode ? "dark bg-gray-900" : "bg-gray-50"}`}
+    >
       <Head>
         <title>Drop-off Locations | EcoWaste Management</title>
         <meta
@@ -110,7 +112,9 @@ const Locations: NextPage = () => {
               <div className="flex-shrink-0">
                 <Link href="/">
                   <span className="flex items-center cursor-pointer">
-                    <span className="text-2xl text-green-600 dark:text-green-500">🗑️</span>
+                    <span className="text-2xl text-green-600 dark:text-green-500">
+                      🗑️
+                    </span>
                     <span className="ml-2 text-xl font-bold text-gray-700 dark:text-white">
                       EcoWaste
                     </span>
@@ -149,14 +153,16 @@ const Locations: NextPage = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-700 dark:text-white mb-6">
               Hazardous Waste Drop-off Locations
             </h1>
-            
+
             <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-md mb-6">
               <h2 className="text-lg font-medium text-green-700 dark:text-green-300 mb-2">
                 Why use a drop-off location?
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
-                Hazardous materials like <strong>used motor oil</strong>, paint, batteries, and electronics cannot go in regular city bins. 
-                These items require special handling to protect the environment and must be taken to designated drop-off locations.
+                Hazardous materials like <strong>used motor oil</strong>, paint,
+                batteries, and electronics cannot go in regular city bins. These
+                items require special handling to protect the environment and
+                must be taken to designated drop-off locations.
               </p>
             </div>
 
@@ -164,7 +170,10 @@ const Locations: NextPage = () => {
               <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4">
                 Find a Location Near You
               </h2>
-              <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
+              <form
+                onSubmit={handleSearch}
+                className="flex flex-col sm:flex-row gap-3"
+              >
                 <div className="flex-grow">
                   <label htmlFor="zipCode" className="sr-only">
                     Enter your ZIP code
@@ -202,7 +211,9 @@ const Locations: NextPage = () => {
                         className="p-4 bg-gray-50 dark:bg-gray-700/50 flex justify-between items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() =>
                           setSelectedLocation(
-                            selectedLocation === location.id ? null : location.id
+                            selectedLocation === location.id
+                              ? null
+                              : location.id
                           )
                         }
                       >
@@ -219,11 +230,15 @@ const Locations: NextPage = () => {
                         </div>
                         <div className="flex items-center">
                           <span className="text-sm font-medium text-green-600 dark:text-green-400 mr-2">
-                            {selectedLocation === location.id ? "Hide Details" : "View Details"}
+                            {selectedLocation === location.id
+                              ? "Hide Details"
+                              : "View Details"}
                           </span>
                           <svg
                             className={`h-5 w-5 text-green-600 dark:text-green-400 transform ${
-                              selectedLocation === location.id ? "rotate-180" : ""
+                              selectedLocation === location.id
+                                ? "rotate-180"
+                                : ""
                             }`}
                             fill="none"
                             viewBox="0 0 24 24"
@@ -246,32 +261,60 @@ const Locations: NextPage = () => {
                             </h4>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Monday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.monday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Monday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.monday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Tuesday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.tuesday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Tuesday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.tuesday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Wednesday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.wednesday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Wednesday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.wednesday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Thursday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.thursday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Thursday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.thursday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Friday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.friday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Friday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.friday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Saturday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.saturday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Saturday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.saturday}
+                                </span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600 dark:text-gray-300">Sunday:</span>
-                                <span className="text-gray-700 dark:text-gray-200">{location.hours.sunday}</span>
+                                <span className="text-gray-600 dark:text-gray-300">
+                                  Sunday:
+                                </span>
+                                <span className="text-gray-700 dark:text-gray-200">
+                                  {location.hours.sunday}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -281,8 +324,13 @@ const Locations: NextPage = () => {
                             </h4>
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                               {location.acceptedItems.map((item, index) => (
-                                <li key={index} className="flex items-center text-gray-600 dark:text-gray-300">
-                                  <span className="text-green-500 dark:text-green-400 mr-2">✓</span>
+                                <li
+                                  key={index}
+                                  className="flex items-center text-gray-600 dark:text-gray-300"
+                                >
+                                  <span className="text-green-500 dark:text-green-400 mr-2">
+                                    ✓
+                                  </span>
                                   {item}
                                 </li>
                               ))}
@@ -292,7 +340,9 @@ const Locations: NextPage = () => {
                             <h4 className="font-medium text-gray-800 dark:text-white mb-2">
                               Contact
                             </h4>
-                            <p className="text-gray-600 dark:text-gray-300">{location.phone}</p>
+                            <p className="text-gray-600 dark:text-gray-300">
+                              {location.phone}
+                            </p>
                           </div>
                           <div className="mt-4">
                             <button className="bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white px-4 py-2 rounded-md">
@@ -320,7 +370,10 @@ const Locations: NextPage = () => {
                   What items are considered hazardous waste?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Hazardous waste includes items like used motor oil, paint, solvents, batteries, electronics, fluorescent bulbs, and household chemicals. These items contain materials that can be harmful to the environment if not disposed of properly.
+                  Hazardous waste includes items like used motor oil, paint,
+                  solvents, batteries, electronics, fluorescent bulbs, and
+                  household chemicals. These items contain materials that can be
+                  harmful to the environment if not disposed of properly.
                 </p>
               </div>
               <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -328,7 +381,10 @@ const Locations: NextPage = () => {
                   Why can't I put motor oil in my regular trash?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Used motor oil is considered hazardous waste and cannot go in regular city bins. It can contaminate soil, groundwater, and waterways if not disposed of properly. One gallon of used oil can contaminate one million gallons of fresh water.
+                  Used motor oil is considered hazardous waste and cannot go in
+                  regular city bins. It can contaminate soil, groundwater, and
+                  waterways if not disposed of properly. One gallon of used oil
+                  can contaminate one million gallons of fresh water.
                 </p>
               </div>
               <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -336,7 +392,11 @@ const Locations: NextPage = () => {
                   How should I transport hazardous materials?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Keep materials in their original containers when possible. Make sure containers are sealed and labeled. Transport them in the trunk of your car or truck bed, not in the passenger compartment. Keep materials separated and secure to prevent spills.
+                  Keep materials in their original containers when possible.
+                  Make sure containers are sealed and labeled. Transport them in
+                  the trunk of your car or truck bed, not in the passenger
+                  compartment. Keep materials separated and secure to prevent
+                  spills.
                 </p>
               </div>
               <div>
@@ -344,7 +404,11 @@ const Locations: NextPage = () => {
                   Is there a fee for dropping off hazardous waste?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Most household hazardous waste drop-off locations accept materials from residents at no charge. Some items like tires or large appliances may have a small fee. Commercial waste may be subject to fees. Contact the facility directly for specific information.
+                  Most household hazardous waste drop-off locations accept
+                  materials from residents at no charge. Some items like tires
+                  or large appliances may have a small fee. Commercial waste may
+                  be subject to fees. Contact the facility directly for specific
+                  information.
                 </p>
               </div>
             </div>
@@ -411,4 +475,4 @@ const Locations: NextPage = () => {
   );
 };
 
-export default Locations; 
+export default Locations;
