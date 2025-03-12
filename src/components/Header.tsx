@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { FiSun, FiMoon, FiMenu, FiX, FiGlobe } from 'react-icons/fi';
 import { Theme, getInitialTheme, toggleTheme } from '../utils/theme';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('English');
 
   useEffect(() => {
     const initialTheme = getInitialTheme();
@@ -15,6 +17,17 @@ const Header = () => {
 
   const handleThemeToggle = () => {
     setTheme(currentTheme => toggleTheme(currentTheme));
+  };
+
+  const toggleLanguageDropdown = () => {
+    setIsLanguageOpen(!isLanguageOpen);
+  };
+
+  const changeLanguage = (language: string) => {
+    setCurrentLanguage(language);
+    setIsLanguageOpen(false);
+    // Here you would implement actual language change logic
+    console.log(`Language changed to: ${language}`);
   };
 
   return (
@@ -48,6 +61,40 @@ const Header = () => {
           <Link href="/contact" className="hover:text-red-500 transition-colors">
             Contact
           </Link>
+          
+          {/* Language Dropdown */}
+          <div className="relative">
+            <button
+              onClick={toggleLanguageDropdown}
+              className="flex items-center space-x-1 hover:text-red-500 transition-colors"
+              aria-label="Change language"
+            >
+              <FiGlobe size={18} />
+              <span>Language</span>
+            </button>
+            
+            {isLanguageOpen && (
+              <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md shadow-lg overflow-hidden z-10 border border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={() => changeLanguage('English')}
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                    currentLanguage === 'English' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => changeLanguage('French')}
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                    currentLanguage === 'French' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
+                >
+                  French
+                </button>
+              </div>
+            )}
+          </div>
+          
           <button
             onClick={handleThemeToggle}
             className="p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -59,6 +106,38 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
+          {/* Language Dropdown for Mobile */}
+          <div className="relative mr-2">
+            <button
+              onClick={toggleLanguageDropdown}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Change language"
+            >
+              <FiGlobe size={20} />
+            </button>
+            
+            {isLanguageOpen && (
+              <div className="absolute top-full right-0 mt-2 w-40 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md shadow-lg overflow-hidden z-10 border border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={() => changeLanguage('English')}
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                    currentLanguage === 'English' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => changeLanguage('French')}
+                  className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
+                    currentLanguage === 'French' ? 'bg-gray-100 dark:bg-gray-700' : ''
+                  }`}
+                >
+                  French
+                </button>
+              </div>
+            )}
+          </div>
+          
           <button
             onClick={handleThemeToggle}
             className="p-2 mr-2 rounded-full hover:bg-white/10 transition-colors"
