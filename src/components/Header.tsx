@@ -52,8 +52,8 @@ const Header = () => {
           <Link href="/" className="hover:text-red-500 transition-colors">
             Home
           </Link>
-          <Link href="/resources" className="hover:text-red-500 transition-colors">
-            Resources
+          <Link href="/locations" className="hover:text-red-500 transition-colors">
+            Waste Drop-off
           </Link>
           <Link href="/faq" className="hover:text-red-500 transition-colors">
             FAQ
@@ -166,11 +166,11 @@ const Header = () => {
                 Home
               </Link>
               <Link
-                href="/resources"
+                href="/locations"
                 className="py-2 hover:text-red-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Resources
+                Waste Drop-off
               </Link>
               <Link
                 href="/faq"
