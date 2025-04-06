@@ -1,40 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Calgary Waste Management Website
+
+A comprehensive web application for the City of Calgary's Waste & Recycling Services, designed to help residents access information about waste collection, recycling guidelines, and disposal services.
+
+## Features
+
+- **Collection Schedule Lookup**: Residents can enter their postal code to view their specific waste collection schedule
+- **Waste Sorting Guide**: Interactive search tool to help residents determine how to properly dispose of various items
+- **Bin Information**: Detailed information about the different waste bins (Green, Blue, and Black carts)
+- **Landfill Locations**: Map and details of disposal facilities across Calgary
+- **FAQ Section**: Answers to common waste management questions
+- **Contact Information**: Multiple ways to get in touch with Waste & Recycling Services
+
+## Technologies Used
+
+- **Framework**: Next.js with TypeScript
+- **Styling**: Tailwind CSS for responsive design with dark mode support
+- **Icons**: React Icons for intuitive UI elements
+- **Layout**: Responsive design that works on desktop and mobile devices
+- **Accessibility**: Focus on creating an accessible experience for all users
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **`/src/pages`**: Main pages of the application (Home, About, FAQ, Contact, Locations)
+- **`/src/components`**: Reusable UI components including:
+  - `BinTypes.tsx`: Information about different waste bins
+  - `CollectionSchedule.tsx`: Calendar view of collection days
+  - `NextBinDay.tsx`: Upcoming collection dates
+  - `WasteGuideSearch.tsx`: Search tool for waste disposal instructions
+  - `QuickLinks.tsx`: Quick access to key information
+- **`/src/styles`**: Global styles and Tailwind configuration
+- **`/public`**: Static assets including images
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This application can be deployed using Vercel for optimal performance with Next.js:
 
-## Learn More
+```bash
+npm run build
+# or
+yarn build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Future Enhancements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- Integration with city database for real-time collection schedules
+- Push notifications for collection day reminders
+- User accounts to save preferences and locations
+- Multilingual support for Calgary's diverse population
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
