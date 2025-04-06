@@ -1,10 +1,8 @@
 import Layout from '../components/Layout';
 import NextBinDay from '../components/NextBinDay';
-import WasteSearch from '../components/WasteSearch';
 import QuickLinks from '../components/QuickLinks';
-import BinTypes from '../components/BinTypes';
 import ReminderForm from '../components/ReminderForm';
-import WasteItemsGallery from '../components/WasteItemsGallery';
+import WasteGuideSearch from '../components/WasteGuideSearch';
 
 export default function Home() {
   return (
@@ -21,27 +19,21 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Search Section */}
-          <div className="mb-12 max-w-2xl mx-auto">
-            <WasteSearch />
+          {/* Schedule Section */}
+          <div className="mb-12">
+            <NextBinDay />
           </div>
 
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Main Content Area */}
             <div className="lg:col-span-8 space-y-8">
-              <BinTypes />
-              <div className="lg:hidden space-y-6">
-                <NextBinDay />
-                <ReminderForm />
-              </div>
-              <WasteItemsGallery />
+              <WasteGuideSearch />
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-4 space-y-6">
               <div className="hidden lg:block sticky top-8 space-y-6">
-                <NextBinDay />
                 <ReminderForm />
               </div>
             </div>

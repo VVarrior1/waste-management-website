@@ -1,168 +1,196 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+
+interface BinTypeInfo {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+  items: string[];
+  tip: string;
+  color: string;
+  link?: {
+    text: string;
+    url: string;
+  };
+}
 
 const BinTypes = () => {
-  const [activeTab, setActiveTab] = useState<"green" | "blue" | "black" | "hazardous">("green");
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [showCommonItems, setShowCommonItems] = useState(false);
 
-  const renderTabContent = () => {
-    if (activeTab === "green") {
-      return (
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-md">
-          <h3 className="text-xl font-semibold mb-3 text-blue-700 dark:text-blue-300">
-            Blue Cart Recycling
-          </h3>
-          <p className="mb-2 text-gray-800 dark:text-gray-200">
-            Clean and loose recyclable items accepted in Alberta:
-          </p>
-          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-            <li>Paper, newspapers, magazines, and cardboard</li>
-            <li>Clean food cans and empty aerosol cans</li>
-            <li>Clean plastic containers (types 1-7)</li>
-            <li>Clean plastic bags and bubble wrap (bundled)</li>
-            <li>Clean glass bottles and jars</li>
-            <li>Clean aluminum foil and containers</li>
-            <li>Empty paper cups and cartons</li>
-          </ul>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <p>✨ Tip: All items should be clean, dry, and loose (not bagged)</p>
-          </div>
-        </div>
-      );
-    } else if (activeTab === "blue") {
-      return (
-        <div className="p-4 bg-green-50 dark:bg-green-900/30 rounded-md">
-          <h3 className="text-xl font-semibold mb-3 text-green-700 dark:text-green-300">
-            Green Cart Composting
-          </h3>
-          <p className="mb-2 text-gray-800 dark:text-gray-200">
-            Food and yard waste accepted in Alberta:
-          </p>
-          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-            <li>All food waste (including meat, bones, and dairy)</li>
-            <li>Food-soiled paper and cardboard</li>
-            <li>Yard waste (grass, leaves, plants)</li>
-            <li>Small branches and twigs</li>
-            <li>Pet waste and cat litter (in compostable bags)</li>
-            <li>Coffee filters and tea bags</li>
-            <li>Approved compostable bags and containers</li>
-          </ul>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <p>✨ Tip: Look for the certified compostable logo on bags</p>
-          </div>
-        </div>
-      );
-    } else if (activeTab === "hazardous") {
-      return (
-        <div className="p-4 bg-red-50 dark:bg-red-900/30 rounded-md">
-          <h3 className="text-xl font-semibold mb-3 text-red-700 dark:text-red-300">
-            Household Hazardous Waste
-          </h3>
-          <p className="mb-2 text-gray-800 dark:text-gray-200">
-            Items requiring special disposal in Alberta:
-          </p>
-          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-            <li>Motor oil, filters, and containers</li>
-            <li>Paint, stains, and solvents</li>
-            <li>Household chemicals and cleaners</li>
-            <li>Batteries (all types)</li>
-            <li>Electronics and computers</li>
-            <li>Light bulbs and tubes</li>
-            <li>Propane tanks and aerosol cans</li>
-            <li>Automotive products</li>
-          </ul>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <p>✨ Tip: Never place hazardous materials in your regular bins</p>
-          </div>
-          <Link
-            href="/locations"
-            className="mt-4 inline-flex items-center px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out
-              bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700
-              text-white shadow-md hover:shadow-lg active:shadow-inner
-              transform hover:-translate-y-0.5 active:translate-y-0"
-          >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Find Drop-off Locations
-          </Link>
-        </div>
-      );
+  const binTypes: BinTypeInfo[] = [
+    {
+      id: "blue",
+      title: "Blue Cart Recycling",
+      icon: <span className="text-3xl">♻️</span>,
+      description: "Clean and loose recyclable items accepted in Alberta:",
+      items: [
+        "Paper, newspapers, magazines, and cardboard",
+        "Clean food cans and empty aerosol cans",
+        "Clean plastic containers (types 1-7)",
+        "Clean plastic bags and bubble wrap (bundled)",
+        "Clean glass bottles and jars",
+        "Clean aluminum foil and containers",
+        "Empty paper cups and cartons"
+      ],
+      tip: "All items should be clean, dry, and loose (not bagged)",
+      color: "blue"
+    },
+    {
+      id: "green",
+      title: "Green Cart Composting",
+      icon: <span className="text-3xl">🍃</span>,
+      description: "Food and yard waste accepted in Alberta:",
+      items: [
+        "All food waste (including meat, bones, and dairy)",
+        "Food-soiled paper and cardboard",
+        "Yard waste (grass, leaves, plants)",
+        "Small branches and twigs",
+        "Pet waste and cat litter (in compostable bags)",
+        "Coffee filters and tea bags",
+        "Approved compostable bags and containers"
+      ],
+      tip: "Look for the certified compostable logo on bags",
+      color: "green"
+    },
+    {
+      id: "black",
+      title: "Black Cart Garbage",
+      icon: <span className="text-3xl">🗑️</span>,
+      description: "Items that go to landfill in Alberta:",
+      items: [
+        "Non-recyclable packaging and plastics",
+        "Styrofoam and foam packaging",
+        "Disposable diapers and hygiene products",
+        "Non-recyclable glass (e.g., broken dishes)",
+        "Chip bags and snack wrappers",
+        "Straws and non-recyclable plastic",
+        "Dryer sheets and disposable mop sheets"
+      ],
+      tip: "If unsure about an item, contact your local waste management facility for guidance",
+      color: "gray"
+    },
+    {
+      id: "hazardous",
+      title: "Household Hazardous Waste",
+      icon: <span className="text-3xl">⚠️</span>,
+      description: "Items requiring special disposal in Alberta:",
+      items: [
+        "Motor oil, filters, and containers",
+        "Paint, stains, and solvents",
+        "Household chemicals and cleaners",
+        "Batteries (all types)",
+        "Electronics and computers",
+        "Light bulbs and tubes",
+        "Propane tanks and aerosol cans",
+        "Automotive products"
+      ],
+      tip: "Never place hazardous materials in your regular bins",
+      color: "red",
+      link: {
+        text: "Find Drop-off Locations",
+        url: "/locations"
+      }
+    }
+  ];
+
+  const toggleBinType = (id: string) => {
+    if (activeTab === id) {
+      setActiveTab(null);
     } else {
-      return (
-        <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-md">
-          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">
-            Black Cart Garbage
-          </h3>
-          <p className="mb-2 text-gray-800 dark:text-gray-200">
-            Items that go to landfill in Alberta:
-          </p>
-          <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
-            <li>Non-recyclable packaging and plastics</li>
-            <li>Styrofoam and foam packaging</li>
-            <li>Disposable diapers and hygiene products</li>
-            <li>Non-recyclable glass (e.g., broken dishes)</li>
-            <li>Chip bags and snack wrappers</li>
-            <li>Straws and non-recyclable plastic</li>
-            <li>Dryer sheets and disposable mop sheets</li>
-          </ul>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            <p>✨ Tip: If unsure about an item, contact your local waste management facility for guidance</p>
-          </div>
-        </div>
-      );
+      setActiveTab(id);
+    }
+  };
+
+  const getButtonColorClass = (color: string) => {
+    switch (color) {
+      case "blue":
+        return "border-blue-500 text-blue-700 dark:text-blue-400";
+      case "green":
+        return "border-green-500 text-green-700 dark:text-green-400";
+      case "gray":
+        return "border-gray-500 text-gray-700 dark:text-gray-400";
+      case "red":
+        return "border-red-500 text-red-700 dark:text-red-400";
+      default:
+        return "border-gray-300 text-gray-600 dark:text-gray-400";
+    }
+  };
+
+  const getContentColorClass = (color: string) => {
+    switch (color) {
+      case "blue":
+        return "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800";
+      case "green":
+        return "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800";
+      case "gray":
+        return "bg-gray-50 dark:bg-gray-800/40 border-gray-200 dark:border-gray-700";
+      case "red":
+        return "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800";
+      default:
+        return "bg-gray-50 dark:bg-gray-800/40 border-gray-200 dark:border-gray-700";
     }
   };
 
   return (
     <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden mb-8">
       <div className="p-4 sm:p-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-white mb-4">
-          Waste Guide - Alberta
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-4">
-          <button
-            className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm ${
-              activeTab === "green"
-                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md"
-                : "bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 hover:from-blue-100 hover:to-blue-200 dark:from-blue-900/30 dark:to-blue-900/30 dark:text-blue-400 dark:hover:from-blue-900/40 dark:hover:to-blue-900/40"
-            } transform hover:-translate-y-0.5 active:translate-y-0 hover:shadow active:shadow-inner`}
-            onClick={() => setActiveTab("green")}
-          >
-            Blue Cart
-          </button>
-          <button
-            className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm ${
-              activeTab === "blue"
-                ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-md"
-                : "bg-gradient-to-r from-green-50 to-green-100 text-green-700 hover:from-green-100 hover:to-green-200 dark:from-green-900/30 dark:to-green-900/30 dark:text-green-400 dark:hover:from-green-900/40 dark:hover:to-green-900/40"
-            } transform hover:-translate-y-0.5 active:translate-y-0 hover:shadow active:shadow-inner`}
-            onClick={() => setActiveTab("blue")}
-          >
-            Green Cart
-          </button>
-          <button
-            className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm ${
-              activeTab === "black"
-                ? "bg-gradient-to-r from-gray-800 to-gray-900 text-white shadow-md"
-                : "bg-gradient-to-r from-gray-600 to-gray-700 text-gray-100 hover:from-gray-700 hover:to-gray-800 dark:from-gray-800 dark:to-gray-900 dark:text-gray-200 dark:hover:from-gray-900 dark:hover:to-black"
-            } transform hover:-translate-y-0.5 active:translate-y-0 hover:shadow active:shadow-inner`}
-            onClick={() => setActiveTab("black")}
-          >
-            Black Cart
-          </button>
-          <button
-            className={`px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm ${
-              activeTab === "hazardous"
-                ? "bg-gradient-to-r from-red-500 to-red-600 text-white shadow-md"
-                : "bg-gradient-to-r from-red-50 to-red-100 text-red-700 hover:from-red-100 hover:to-red-200 dark:from-red-900/30 dark:to-red-900/30 dark:text-red-400 dark:hover:from-red-900/40 dark:hover:to-red-900/40"
-            } transform hover:-translate-y-0.5 active:translate-y-0 hover:shadow active:shadow-inner`}
-            onClick={() => setActiveTab("hazardous")}
-          >
-            Hazardous Waste
-          </button>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-white">
+            Waste Guide - Alberta
+          </h2>
         </div>
-        <div>{renderTabContent()}</div>
+
+        <div className="space-y-4">
+          {binTypes.map((bin) => (
+            <div key={bin.id} className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <button
+                className={`w-full flex items-center justify-between p-4 text-left font-medium bg-white dark:bg-gray-800 border-l-4 ${getButtonColorClass(bin.color)}`}
+                onClick={() => toggleBinType(bin.id)}
+              >
+                <div className="flex items-center">
+                  {bin.icon}
+                  <span className="ml-3 text-lg">{bin.title}</span>
+                </div>
+                {activeTab === bin.id ? (
+                  <FiChevronUp className="w-5 h-5" />
+                ) : (
+                  <FiChevronDown className="w-5 h-5" />
+                )}
+              </button>
+              
+              {activeTab === bin.id && (
+                <div className={`p-4 ${getContentColorClass(bin.color)}`}>
+                  <p className="mb-2 text-gray-800 dark:text-gray-200">
+                    {bin.description}
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300 mb-4">
+                    {bin.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <p>✨ Tip: {bin.tip}</p>
+                  </div>
+                  
+                  {bin.link && (
+                    <Link
+                      href={bin.link.url}
+                      className="inline-flex items-center px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out
+                        bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700
+                        text-white shadow-md hover:shadow-lg active:shadow-inner
+                        transform hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      {bin.link.text}
+                    </Link>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

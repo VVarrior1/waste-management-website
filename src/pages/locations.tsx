@@ -18,10 +18,10 @@ export default function Locations() {
   return (
     <Layout>
       <Head>
-        <title>Drop-off Locations | City of Calgary Waste & Recycling</title>
+        <title>Landfill Locations | City of Calgary Waste & Recycling</title>
         <meta
           name="description"
-          content="Find hazardous waste drop-off locations in Calgary"
+          content="Find landfill and hazardous waste drop-off locations in Calgary"
         />
       </Head>
 
@@ -29,7 +29,7 @@ export default function Locations() {
         <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
           <div className="p-4 sm:p-6">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-700 dark:text-white mb-6">
-              Hazardous Waste Drop-off Locations
+              Landfill Locations
             </h1>
 
             <LocationInfo />

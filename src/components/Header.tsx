@@ -53,13 +53,13 @@ const Header = () => {
             Home
           </Link>
           <Link href="/locations" className="hover:text-red-500 transition-colors">
-            Waste Drop-off
+            Landfill Locations
           </Link>
           <Link href="/faq" className="hover:text-red-500 transition-colors">
             FAQ
           </Link>
           <Link href="/contact" className="hover:text-red-500 transition-colors">
-            Contact
+            Contact Us
           </Link>
           
           {/* Language Dropdown */}
@@ -170,7 +170,7 @@ const Header = () => {
                 className="py-2 hover:text-red-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Waste Drop-off
+                Landfill Locations
               </Link>
               <Link
                 href="/faq"
@@ -184,7 +184,7 @@ const Header = () => {
                 className="py-2 hover:text-red-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                Contact Us
               </Link>
             </nav>
           </div>
