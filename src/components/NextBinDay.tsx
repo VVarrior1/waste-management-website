@@ -278,17 +278,17 @@ const NextBinDay = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden mb-8">
-      <div className="p-4 sm:p-6">
+    <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden h-full">
+      <div className="p-6">
         {!isScheduleSet ? (
           <>
             <h2 className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-white mb-4">
               Find Your Collection Schedule
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
               Enter your postal code to see your collection schedule
             </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="flex flex-col h-full">
               <div>
                 <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Postal Code
@@ -307,16 +307,17 @@ const NextBinDay = () => {
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>
                 )}
               </div>
-              <button
-                type="submit"
-                className="w-full px-4 py-2 rounded-md font-medium text-white transition-all duration-200 ease-in-out
-                  bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700
-                  shadow-md hover:shadow-lg active:shadow-inner
-                  transform hover:-translate-y-0.5 active:translate-y-0
-                  focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-              >
-                Check Schedule
-              </button>
+              <div className="mt-8">
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 rounded-md font-medium text-white transition-all duration-200 ease-in-out
+                    bg-red-600 hover:bg-red-700
+                    shadow-md hover:shadow-lg active:shadow-inner
+                    focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                >
+                  Check Schedule
+                </button>
+              </div>
             </form>
           </>
         ) : !isScheduleVisible ? (
@@ -343,7 +344,7 @@ const NextBinDay = () => {
               <button
                 onClick={() => setIsScheduleVisible(true)}
                 className="inline-flex items-center px-3 py-1.5 text-sm rounded-md transition-all duration-200 ease-in-out
-                  bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700
+                  bg-red-600 hover:bg-red-700
                   text-white shadow-md hover:shadow-lg"
               >
                 View Schedule
@@ -360,7 +361,7 @@ const NextBinDay = () => {
                 <button
                   onClick={handlePrint}
                   className="inline-flex items-center px-3 py-1.5 text-sm rounded-md transition-all duration-200 ease-in-out
-                    bg-blue-500 text-white hover:bg-blue-600"
+                    bg-red-600 text-white hover:bg-red-700"
                   title="Print schedule"
                 >
                   <FiPrinter className="w-4 h-4 mr-1" />
@@ -379,7 +380,7 @@ const NextBinDay = () => {
                 <button
                   onClick={() => setIsScheduleVisible(false)}
                   className="inline-flex items-center justify-center w-8 h-8 rounded-md transition-all duration-200 ease-in-out
-                    bg-red-500 text-white hover:bg-red-600"
+                    bg-red-600 text-white hover:bg-red-700"
                   title="Close schedule"
                 >
                   <FiX className="w-4 h-4" />

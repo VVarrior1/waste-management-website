@@ -43,7 +43,7 @@ interface WasteItem {
   disposal: string;
 }
 
-const WasteGuideSearch = () => {
+const WasteGuideSearch = ({ defaultOpen }: { defaultOpen: boolean }) => {
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -53,8 +53,8 @@ const WasteGuideSearch = () => {
   // Bin types state
   const [activeTab, setActiveTab] = useState<string | null>(null);
   
-  // Gallery state
-  const [showGallery, setShowGallery] = useState(false);
+  // Gallery state - initialize based on defaultOpen prop
+  const [showGallery, setShowGallery] = useState(defaultOpen);
   const [selectedItem, setSelectedItem] = useState<WasteItem | null>(null);
 
   // Mock database of waste items
@@ -476,7 +476,7 @@ const WasteGuideSearch = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden mb-8">
+    <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
       <div className="p-4 sm:p-6">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-white mb-6">
           Waste Guide & Search
@@ -614,7 +614,7 @@ const WasteGuideSearch = () => {
                     {wasteGalleryItems.map((item) => (
                       <div
                         key={item.id}
-                        className="group relative bg-white dark:bg-gray-700 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl border border-gray-200 dark:border-gray-600 cursor-pointer"
+                        className="group flex flex-col bg-white dark:bg-gray-700 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl border border-gray-200 dark:border-gray-600 cursor-pointer"
                         onClick={() => handleItemClick(item)}
                       >
                         <div className="relative pb-[100%]">
@@ -629,14 +629,12 @@ const WasteGuideSearch = () => {
                               />
                             </div>
                           </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div className="absolute bottom-0 left-0 right-0 p-4 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                              <p className="text-white font-medium text-sm mb-2 drop-shadow-md">{item.name}</p>
-                              <span className={`inline-block px-3 py-1 rounded-full ${getCategoryColor(item.category)} text-white text-xs font-medium shadow-lg`}>
-                                {item.category}
-                              </span>
-                            </div>
-                          </div>
+                        </div>
+                        <div className="p-2 text-center bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                          <p className="font-medium text-gray-800 dark:text-white text-sm">{item.name}</p>
+                          <span className={`inline-block mt-1 px-2 py-0.5 rounded-full ${getCategoryColor(item.category)} text-white text-xs font-medium`}>
+                            {item.category}
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -681,9 +679,8 @@ const WasteGuideSearch = () => {
                       <Link
                         href={bin.link.url}
                         className="inline-flex items-center px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out
-                          bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700
-                          text-white shadow-md hover:shadow-lg active:shadow-inner
-                          transform hover:-translate-y-0.5 active:translate-y-0"
+                          bg-red-600 hover:bg-red-700
+                          text-white shadow-md hover:shadow-lg active:shadow-inner"
                       >
                         {bin.link.text}
                       </Link>
@@ -728,7 +725,7 @@ const WasteGuideSearch = () => {
             </div>
             <div className="p-4 bg-gray-50 dark:bg-gray-700/50 flex justify-end border-t border-gray-200 dark:border-gray-700">
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                 onClick={handleCloseModal}
               >
                 Close
