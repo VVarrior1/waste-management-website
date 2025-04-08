@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
-import { FiSearch, FiChevronUp, FiChevronDown, FiList, FiInfo, FiGrid } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { FiSearch, FiChevronUp, FiChevronDown, FiList, FiInfo, FiGrid, FiX } from 'react-icons/fi';
 
 interface SearchResult {
   name: string;
@@ -438,12 +438,15 @@ const WasteGuideSearch = ({ defaultOpen }: { defaultOpen: boolean }) => {
 
   // Bin type handlers
   const toggleBinType = (id: string) => {
-    if (activeTab === id) {
-      setActiveTab(null);
-    } else {
-      setActiveTab(id);
-    }
+    setActiveTab(id);
   };
+
+  // Set a default active tab on component mount if none is set
+  useEffect(() => {
+    if (!activeTab) {
+      setActiveTab('blue'); // Default to blue cart
+    }
+  }, [activeTab]);
 
   const getButtonColorClass = (color: string) => {
     switch (color) {
@@ -472,6 +475,21 @@ const WasteGuideSearch = ({ defaultOpen }: { defaultOpen: boolean }) => {
         return "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800";
       default:
         return "bg-gray-50 dark:bg-gray-800/40 border-gray-200 dark:border-gray-700";
+    }
+  };
+
+  const getBinColorClass = (bin: string): string => {
+    switch (bin) {
+      case "Green Cart":
+        return "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-200 border-green-200 dark:border-green-800";
+      case "Blue Cart":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200 border-blue-200 dark:border-blue-800";
+      case "Black Cart":
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900/40 dark:text-gray-200 border-gray-200 dark:border-gray-700";
+      case "Hazardous Waste":
+        return "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-200 border-red-200 dark:border-red-800";
+      default:
+        return "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600";
     }
   };
 
@@ -554,7 +572,7 @@ const WasteGuideSearch = ({ defaultOpen }: { defaultOpen: boolean }) => {
                               {item.name}
                             </h3>
                             <div className="my-1">
-                              <span className="inline-block px-2 py-1 text-xs font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded border border-gray-200 dark:border-gray-600">
+                              <span className={`inline-block px-2 py-1 text-xs font-medium rounded border ${getBinColorClass(item.bin)}`}>
                                 {item.bin}
                               </span>
                             </div>
@@ -643,52 +661,105 @@ const WasteGuideSearch = ({ defaultOpen }: { defaultOpen: boolean }) => {
               )}
             </div>
             
-            {/* Bin Types */}
-            {binTypes.map((bin) => (
-              <div key={bin.id} className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <button
-                  className={`w-full flex items-center justify-between p-4 text-left font-medium bg-white dark:bg-gray-800 border-l-4 ${getButtonColorClass(bin.color)}`}
-                  onClick={() => toggleBinType(bin.id)}
-                >
-                  <div className="flex items-center">
-                    {bin.icon}
-                    <span className="ml-3 text-lg">{bin.title}</span>
+            {/* Bin Types with shared info section */}
+            <div className="mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {binTypes.map((bin) => (
+                  <div key={bin.id} className={`rounded-lg border overflow-hidden h-full transition-all duration-200 cursor-pointer ${
+                    activeTab === bin.id 
+                      ? 'ring-2 ring-offset-1 shadow-lg scale-[1.02] ' + 
+                        (bin.color === 'blue' 
+                          ? 'ring-blue-500 border-blue-300 dark:border-blue-700' 
+                          : bin.color === 'green' 
+                            ? 'ring-green-500 border-green-300 dark:border-green-700' 
+                            : bin.color === 'gray' 
+                              ? 'ring-gray-500 border-gray-300 dark:border-gray-700' 
+                              : 'ring-red-500 border-red-300 dark:border-red-700')
+                      : 'border-gray-200 dark:border-gray-700 hover:shadow-md hover:scale-[1.01]'
+                  }`}>
+                    <button
+                      className={`w-full flex flex-col items-center text-center p-6 text-left font-medium bg-white dark:bg-gray-800 
+                        ${activeTab === bin.id 
+                          ? bin.color === 'blue' 
+                            ? 'bg-blue-50 dark:bg-blue-900/30' 
+                            : bin.color === 'green' 
+                              ? 'bg-green-50 dark:bg-green-900/30' 
+                              : bin.color === 'gray' 
+                                ? 'bg-gray-50 dark:bg-gray-700/50' 
+                                : 'bg-red-50 dark:bg-red-900/30'
+                          : ''
+                        }`}
+                      onClick={() => toggleBinType(bin.id)}
+                    >
+                      <div className="mb-3">
+                        {bin.icon}
+                      </div>
+                      <span className={`text-lg ${
+                        bin.color === 'blue' 
+                          ? 'text-blue-700 dark:text-blue-400' 
+                          : bin.color === 'green' 
+                            ? 'text-green-700 dark:text-green-400' 
+                            : bin.color === 'gray' 
+                              ? 'text-gray-700 dark:text-gray-400' 
+                              : 'text-red-700 dark:text-red-400'
+                      }`}>{bin.title}</span>
+                    </button>
                   </div>
-                  {activeTab === bin.id ? (
-                    <FiChevronUp className="w-5 h-5" />
-                  ) : (
-                    <FiChevronDown className="w-5 h-5" />
-                  )}
-                </button>
+                ))}
+              </div>
+              
+              {/* Shared information panel - always visible */}
+              <div className={`mt-6 p-6 rounded-lg border shadow-md ${
+                activeTab === 'blue' 
+                  ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' 
+                  : activeTab === 'green' 
+                    ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' 
+                    : activeTab === 'black' 
+                      ? 'bg-gray-50 dark:bg-gray-800/40 border-gray-200 dark:border-gray-700' 
+                      : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+              }`}>
+                <div className="flex items-center mb-6">
+                  <div className="mr-3">
+                    {binTypes.find(bin => bin.id === activeTab)?.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                    {binTypes.find(bin => bin.id === activeTab)?.title}
+                  </h3>
+                </div>
                 
-                {activeTab === bin.id && (
-                  <div className={`p-4 ${getContentColorClass(bin.color)}`}>
-                    <p className="mb-2 text-gray-800 dark:text-gray-200">
-                      {bin.description}
+                {binTypes.find(bin => bin.id === activeTab) && (
+                  <>
+                    <p className="mb-6 text-gray-800 dark:text-gray-200 text-lg">
+                      {binTypes.find(bin => bin.id === activeTab)?.description}
                     </p>
-                    <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300 mb-4">
-                      {bin.items.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      <p>✨ Tip: {bin.tip}</p>
+                    <div className="bg-white dark:bg-gray-700 p-5 rounded-lg mb-6 shadow-sm">
+                      <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-3 text-lg">What goes in this bin:</h4>
+                      <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                        {binTypes.find(bin => bin.id === activeTab)?.items.map((item, index) => (
+                          <li key={index} className="pb-1">{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="text-sm border-l-4 border-yellow-400 pl-4 py-3 bg-yellow-50 dark:bg-yellow-900/20 text-gray-700 dark:text-gray-300 mb-6 rounded-r-md">
+                      <p className="font-medium">✨ Tip: {binTypes.find(bin => bin.id === activeTab)?.tip}</p>
                     </div>
                     
-                    {bin.link && (
-                      <Link
-                        href={bin.link.url}
-                        className="inline-flex items-center px-4 py-2 rounded-md font-medium transition-all duration-200 ease-in-out
-                          bg-red-600 hover:bg-red-700
-                          text-white shadow-md hover:shadow-lg active:shadow-inner"
-                      >
-                        {bin.link.text}
-                      </Link>
+                    {binTypes.find(bin => bin.id === activeTab)?.link && (
+                      <div className="text-center mt-6">
+                        <Link
+                          href={binTypes.find(bin => bin.id === activeTab)?.link?.url || ''}
+                          className="inline-flex items-center px-6 py-3 rounded-md font-medium text-base transition-all duration-200 ease-in-out
+                            bg-red-600 hover:bg-red-700
+                            text-white shadow-md hover:shadow-lg active:shadow-inner"
+                        >
+                          {binTypes.find(bin => bin.id === activeTab)?.link?.text}
+                        </Link>
+                      </div>
                     )}
-                  </div>
+                  </>
                 )}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
