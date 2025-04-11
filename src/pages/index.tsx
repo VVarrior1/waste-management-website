@@ -5,7 +5,7 @@ import QuickLinks from "../components/QuickLinks";
 import BinTypes from "../components/BinTypes";
 import ReminderForm from "../components/ReminderForm";
 import WasteItemsGallery from "../components/WasteItemsGallery";
-
+import WasteGuideSearch from "../components/WasteGuideSearch";
 
 export default function Home() {
   return (
