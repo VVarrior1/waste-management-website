@@ -1,10 +1,10 @@
-import Layout from '../components/Layout';
-import NextBinDay from '../components/NextBinDay';
-import WasteSearch from '../components/WasteSearch';
-import QuickLinks from '../components/QuickLinks';
-import BinTypes from '../components/BinTypes';
-import ReminderForm from '../components/ReminderForm';
-import WasteItemsGallery from '../components/WasteItemsGallery';
+import Layout from "../components/Layout";
+import NextBinDay from "../components/NextBinDay";
+import WasteSearch from "../components/WasteSearch";
+import QuickLinks from "../components/QuickLinks";
+import BinTypes from "../components/BinTypes";
+import ReminderForm from "../components/ReminderForm";
+import WasteItemsGallery from "../components/WasteItemsGallery";
 
 export default function Home() {
   return (
@@ -17,7 +17,8 @@ export default function Home() {
               City of Calgary Waste & Recycling
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Find the right bin for your waste and learn how to dispose of items responsibly.
+              Find the right bin for your waste and learn how to dispose of
+              items responsibly.
             </p>
           </div>
 
