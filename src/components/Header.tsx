@@ -65,6 +65,7 @@ const Header = () => {
             className="hover:text-red-500 transition-colors"
           >
             Resources
+
           </Link>
           <Link href="/faq" className="hover:text-red-500 transition-colors">
             FAQ
@@ -74,6 +75,7 @@ const Header = () => {
             className="hover:text-red-500 transition-colors"
           >
             Contact
+
           </Link>
 
           {/* Language Dropdown */}
@@ -188,11 +190,11 @@ const Header = () => {
                 Home
               </Link>
               <Link
-                href="/resources"
+                href="/locations"
                 className="py-2 hover:text-red-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Resources
+                Landfill Locations
               </Link>
               <Link
                 href="/faq"
@@ -206,7 +208,7 @@ const Header = () => {
                 className="py-2 hover:text-red-500 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                Contact Us
               </Link>
             </nav>
           </div>

@@ -32,7 +32,7 @@ const Contact = () => {
       hours: 'Monday - Friday, 8:00 AM - 4:30 PM'
     },
     {
-      name: 'Hazardous Waste Drop-off',
+      name: 'Landfill Locations',
       description: 'Throw n Go facilities for household hazardous waste',
       address: 'Multiple locations across Calgary',
       phone: '311 (Emergency: 911)',
@@ -174,19 +174,6 @@ const Contact = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Map Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-            Our Locations
-          </h2>
-          <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700 rounded-lg">
-            {/* Add map component here */}
-            <div className="w-full h-64 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-              <span className="text-gray-500 dark:text-gray-400">Interactive map coming soon</span>
-            </div>
           </div>
         </div>
       </div>

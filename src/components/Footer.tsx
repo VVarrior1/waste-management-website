@@ -15,7 +15,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Jump To</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-red-300 transition-colors">
@@ -23,8 +23,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="text-gray-300 hover:text-red-300 transition-colors">
-                  Resources
+                <Link href="/locations" className="text-gray-300 hover:text-red-300 transition-colors">
+                  Landfill Locations
                 </Link>
               </li>
               <li>
@@ -34,7 +34,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/contact" className="text-gray-300 hover:text-red-300 transition-colors">
-                  Contact
+                  Contact Us
                 </Link>
               </li>
             </ul>

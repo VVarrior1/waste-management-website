@@ -4,15 +4,15 @@ const QuickLinks = () => {
   const links = [
     {
       title: 'Hazardous Waste',
-      description: 'Find drop-off locations for hazardous materials',
+      description: 'Find landfill locations for hazardous materials',
       icon: '⚠️',
       href: '/locations#hazardous'
     },
     {
-      title: 'Recycling Guide',
-      description: 'Learn what can and cannot be recycled',
-      icon: '♻️',
-      href: '/resources#recycling'
+      title: 'FAQ',
+      description: 'Find answers to common waste & recycling questions',
+      icon: '❓',
+      href: '/faq'
     },
     {
       title: 'Report Issue',
