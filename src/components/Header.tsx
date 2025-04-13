@@ -61,11 +61,10 @@ const Header = () => {
             Home
           </Link>
           <Link
-            href="/resources"
+            href="/locations"
             className="hover:text-red-500 transition-colors"
           >
-            Resources
-
+            Landfill Locations
           </Link>
           <Link href="/faq" className="hover:text-red-500 transition-colors">
             FAQ
@@ -74,8 +73,7 @@ const Header = () => {
             href="/contact"
             className="hover:text-red-500 transition-colors"
           >
-            Contact
-
+            Contact Us
           </Link>
 
           {/* Language Dropdown */}
